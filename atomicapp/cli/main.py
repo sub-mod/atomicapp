@@ -9,16 +9,19 @@ import logging
 
 from atomicapp import set_logging
 from atomicapp.constants import ANSWERS_FILE, __ATOMICAPPVERSION__, __NULECULESPECVERSION__
+from atomicapp.utils import printStatus
 
 logger = logging.getLogger(__name__)
 
 def cli_install(args):
     install = Install(**vars(args))
     install.install()
+    printStatus("Install Successful.")
 
 def cli_run(args):
     ae = Run(**vars(args))
     ae.run()
+    printStatus("Run Successful.")
 
 def cli_stop(args):
     stop = Run(stop = True, **vars(args))

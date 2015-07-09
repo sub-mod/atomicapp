@@ -14,6 +14,18 @@ __all__ = ('Utils')
 
 logger = logging.getLogger(__name__)
 
+def printStatus(message):
+    logger.info("atomicapp.status.message="+str(message))
+
+
+def printErrorStatus(message):
+    logger.info("atomicapp.status.error.message="+str(message))
+
+
+def printAnswerFile(message):
+    logger.info("atomicapp.status.answer.message="+str(message))
+
+
 class Utils(object):
 
     __tmpdir = None
@@ -121,7 +133,12 @@ class Utils(object):
                 if len(value) == 0:
                     value = info["default"]
             else:
-                value = raw_input("%s (%s): " % (what, desc))
+                try:
+                    value = raw_input("%s (%s): " % (what, desc))
+                except EOFError:
+                    logger.error("Artifact contains unknown parameter " + what + " missing in answers.conf")
+                    raise
+
             if constraints:
                 for constraint in constraints:
                     logger.info("Checking pattern: %s", constraint["allowed_pattern"])
