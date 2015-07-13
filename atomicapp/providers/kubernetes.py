@@ -1,5 +1,5 @@
 from atomicapp.plugin import Provider, ProviderFailedException
-
+from atomicapp.utils import printErrorStatus
 from collections import OrderedDict
 import os, anymarkup, subprocess
 from subprocess import Popen, PIPE
@@ -78,7 +78,7 @@ class KubernetesProvider(Provider):
                 if stderr and  stderr.strip() != "":
                     raise Exception(str(stderr))
             except Exception:
-                logger.error("cmd failed: %s", " ".join(cmd))
+                printErrorStatus("cmd failed: " + " ".join(cmd))
                 raise
 
     def prepareOrder(self):

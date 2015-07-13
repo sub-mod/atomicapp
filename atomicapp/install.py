@@ -69,7 +69,7 @@ class Install(object):
         logger.debug(" ".join(create))
         subprocess.call(create)
         cp = [self.docker_cli, "cp", "%s:/%s" % (name, APP_ENT_PATH), self.utils.tmpdir]
-        logger.debug(" ".join(cp))
+        logger.debug(cp)
         if not subprocess.call(cp):
             logger.debug("Application entity data copied to %s", self.utils.tmpdir)
 
@@ -168,7 +168,6 @@ class Install(object):
             mainfile_component_path = os.path.join(component_path, MAIN_FILE)
             logger.debug("Component path: %s", component_path)
             if not os.path.isfile(mainfile_component_path) or self.nulecule_base.update:
-                logger.info("Pulling %s", image_name)
                 printStatus("Pulling %s ..." % image_name)
                 component_app = Install(self.nulecule_base.answers_data, image_name, self.nulecule_base.nodeps, 
                                         self.nulecule_base.update, component_path, self.dryrun)

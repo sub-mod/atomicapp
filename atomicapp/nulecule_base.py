@@ -258,7 +258,6 @@ class Nulecule_Base(object):
                 path = os.path.join(self.target_path, Utils.sanitizePath(artifact))
                 if os.path.isfile(path):
                     printStatus("Artifact %s: OK." % (artifact))
-                    logger.debug("Artifact %s: OK", artifact)
                 else:
                     printErrorStatus("Missing artifact %s." % (artifact))
                     raise Exception("Missing artifact %s (%s)" % (artifact, path))

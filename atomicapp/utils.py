@@ -15,7 +15,7 @@ __all__ = ('Utils')
 logger = logging.getLogger(__name__)
 
 def printStatus(message):
-    logger.info("atomicapp.status.message="+str(message))
+    logger.info("atomicapp.status.info.message="+str(message))
 
 
 def printErrorStatus(message):
@@ -136,7 +136,6 @@ class Utils(object):
                 try:
                     value = raw_input("%s (%s): " % (what, desc))
                 except EOFError:
-                    logger.error("Artifact contains unknown parameter " + what + " missing in answers.conf")
                     raise
 
             if constraints:
